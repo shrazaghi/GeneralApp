@@ -1,0 +1,8 @@
+POST http://localhost:5120/graphql
+Content-Type: application/json
+
+
+{ "query" : "{products{ id name description}}"}
+
+
+

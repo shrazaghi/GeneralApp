@@ -1,3 +1,5 @@
+using App.API.GraphQL.Queries;
+using App.Repository.Contexts;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using GeneralApp.Services;
@@ -11,6 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
+
+builder.Services
+    .AddGraphQLServer()
+    .RegisterDbContext<AppReadDbContext>()
+    //.AddQueryType<HelloWorldQuery>()
+    .AddQueryType<ProductQuery>();
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(builder =>
@@ -31,6 +39,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.MapGraphQL();
 
 app.MapControllers();
 

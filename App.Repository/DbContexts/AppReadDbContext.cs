@@ -1,4 +1,5 @@
-﻿using App.Repository.TypeConfigurations;
+﻿using App.Domain.Entities;
+using App.Repository.TypeConfigurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace App.Repository.Contexts
         public AppReadDbContext(DbContextOptions<AppReadDbContext> options) : base(options)
         {
         }
+        public DbSet<Product> products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //warning To protect potentially sensitive information in your connection string,
@@ -30,5 +32,6 @@ namespace App.Repository.Contexts
         {
             modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
         }
+
     }
 }
