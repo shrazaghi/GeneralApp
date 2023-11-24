@@ -1,0 +1,15 @@
+'Data Source=DESKTOP-BQPQRM2;Initial Catalog=AdventureWorks2019;Integrated Security=True'
+
+Scaffold-DbContext 'Data Source=DESKTOP-BQPQRM2;Initial Catalog=AdventureWorks2019;Integrated Security=True;Encrypt=False' Microsoft.EntityFrameworkCore.SqlServer
+
+Scaffold-DbContext 'Data Source=DESKTOP-BQPQRM2;Initial Catalog=AdventureWorks2019;Integrated Security=True;Encrypt=False' Microsoft.EntityFrameworkCore.SqlServer -DataAnnotations
+
+git reset --hard
+git clean -xfdi
+
+
+add-migration Initial-Migrations
+update-database
+remove-migration         // which will remove the migration that you have not applied.
+
+update-database -migration 20210525021627_Initial_Migration

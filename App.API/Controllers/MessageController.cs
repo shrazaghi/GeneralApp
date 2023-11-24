@@ -13,7 +13,8 @@ public class MessageController : ControllerBase
         _messageNotifyService = messageNotifyService;
     }
 
-    [HttpPost(Name = "NewMessage")]
+    [HttpPost()]
+    [Route("new-message/{id}")]
     public void PostNewMessage([FromRoute] int id, [FromBody] string message)
     {
         _messageNotifyService.Notify($"Id:{id}:{message}");
